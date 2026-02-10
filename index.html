@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jayakumar Pujar — ML Engineer & Researcher</title>
+  <meta name="description" content="Portfolio of Jayakumar Pujar — Machine Learning Engineer specializing in Deep Learning, Computer Vision, NLP, and MLOps.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0a0a0b;
+      --bg-elevated: #111113;
+      --bg-card: #161618;
+      --border: #222225;
+      --border-hover: #333338;
+      --text-primary: #ededef;
+      --text-secondary: #8a8a8e;
+      --text-muted: #5a5a5e;
+      --accent: #00e5a0;
+      --accent-dim: #00e5a020;
+      --accent-glow: #00e5a040;
+      --warm: #ff6b35;
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans: 'DM Sans', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: var(--bg);
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    a:hover { opacity: 0.8; }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      background: rgba(10,10,11,0.7);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--serif);
+      font-size: 1.35rem;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    .nav-links a {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--text-primary); opacity: 1; }
+    .nav-cta {
+      background: var(--accent) !important;
+      color: var(--bg) !important;
+      padding: 0.5rem 1.25rem;
+      border-radius: 6px;
+      font-weight: 600 !important;
+      font-size: 0.8rem !important;
+      letter-spacing: 0.03em;
+    }
+    .nav-cta:hover { opacity: 0.9 !important; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      width: 24px; height: 2px;
+      background: var(--text-primary);
+      transition: 0.3s;
+    }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 8rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px;
+      right: -200px;
+      width: 700px;
+      height: 700px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      left: -100px;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      padding: 0.4rem 1rem;
+      border: 1px solid var(--accent-dim);
+      border-radius: 100px;
+      background: var(--accent-dim);
+      animation: fadeInUp 0.8s ease both;
+    }
+    .hero-label .dot {
+      width: 6px; height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-size: clamp(3rem, 7vw, 6.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+      animation: fadeInUp 0.8s 0.15s ease both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      max-width: 600px;
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.8s 0.3s ease both;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s 0.45s ease both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.85rem 2rem;
+      border-radius: 8px;
+      font-family: var(--sans);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: var(--bg);
+    }
+    .btn-primary:hover { box-shadow: 0 0 30px var(--accent-glow); color: var(--bg); }
+    .btn-outline {
+      background: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--text-muted); color: var(--text-primary); }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 5rem;
+      padding-top: 3rem;
+      border-top: 1px solid var(--border);
+      animation: fadeInUp 0.8s 0.6s ease both;
+    }
+    .stat-item .stat-number {
+      font-family: var(--serif);
+      font-size: 2.5rem;
+      color: var(--text-primary);
+      letter-spacing: -0.02em;
+    }
+    .stat-item .stat-label {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 0.25rem;
+    }
+
+    /* ─── SECTIONS ─── */
+    section {
+      padding: 6rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-label {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: var(--serif);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      color: var(--text-secondary);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin-bottom: 3.5rem;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: var(--border);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ─── EXPERIENCE ─── */
+    .exp-timeline { display: flex; flex-direction: column; gap: 0; }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      gap: 3rem;
+      padding: 2.5rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.3s;
+    }
+    .exp-item:first-child { border-top: 1px solid var(--border); }
+    .exp-date {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      padding-top: 0.2rem;
+    }
+    .exp-content h3 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .exp-company {
+      color: var(--accent);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+    .exp-bullets { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; }
+    .exp-bullets li {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.65;
+      padding-left: 1.2rem;
+      position: relative;
+    }
+    .exp-bullets li::before {
+      content: '›';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: bold;
+    }
+
+    /* ─── PROJECTS ─── */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-4px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    .project-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--warm));
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .project-card:hover::before { opacity: 1; }
+    .project-tag {
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--accent);
+      background: var(--accent-dim);
+      padding: 0.25rem 0.75rem;
+      border-radius: 100px;
+      margin-bottom: 1rem;
+    }
+    .project-card h3 {
+      font-size: 1.15rem;
+      margin-bottom: 0.75rem;
+      line-height: 1.3;
+    }
+    .project-card p {
+      color: var(--text-secondary);
+      font-size: 0.88rem;
+      line-height: 1.65;
+      margin-bottom: 1.25rem;
+    }
+    .project-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+    .project-stack span {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      background: var(--bg-elevated);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+    .project-link svg { width: 14px; height: 14px; }
+
+    /* ─── SKILLS ─── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .skill-group {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .skill-group h3 {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      margin-bottom: 1.25rem;
+      font-weight: 600;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .skill-tags span {
+      font-size: 0.85rem;
+      color: var(--text-primary);
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      padding: 0.4rem 0.85rem;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .skill-tags span:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    /* ─── PUBLICATIONS ─── */
+    .pub-list { display: flex; flex-direction: column; gap: 0; }
+    .pub-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 2rem;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--border);
+      transition: padding-left 0.3s;
+    }
+    .pub-item:first-child { border-top: 1px solid var(--border); }
+    .pub-item:hover { padding-left: 0.5rem; }
+    .pub-item h3 {
+      font-size: 1.05rem;
+      margin-bottom: 0.3rem;
+      font-weight: 500;
+    }
+    .pub-item h3 a { color: var(--text-primary); }
+    .pub-item h3 a:hover { color: var(--accent); }
+    .pub-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+    .pub-date {
+      font-family: var(--mono);
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* ─── EDUCATION ─── */
+    .edu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .edu-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+    .edu-degree {
+      font-size: 1.15rem;
+      font-weight: 600;
+      margin-bottom: 0.25rem;
+    }
+    .edu-school {
+      color: var(--accent);
+      font-size: 0.92rem;
+      margin-bottom: 0.5rem;
+    }
+    .edu-details {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* ─── CONTACT / FOOTER ─── */
+    .contact-section {
+      text-align: center;
+      padding: 8rem 2rem;
+    }
+    .contact-section .section-title { margin-bottom: 1.5rem; }
+    .contact-section .section-subtitle {
+      margin: 0 auto 3rem;
+      max-width: 500px;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-primary);
+      font-size: 0.9rem;
+      transition: all 0.25s;
+    }
+    .contact-link:hover {
+      border-color: var(--accent);
+      background: var(--accent-dim);
+      color: var(--text-primary);
+      opacity: 1;
+    }
+    .contact-link svg { width: 18px; height: 18px; }
+
+    footer {
+      text-align: center;
+      padding: 2rem;
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.4; }
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.25rem; }
+      .nav-links { display: none; }
+      .nav-links.open {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: var(--bg-elevated);
+        padding: 1.5rem;
+        gap: 1rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .hamburger { display: flex; }
+      .hero { padding: 7rem 1.25rem 3rem; }
+      .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .pub-item { flex-direction: column; gap: 0.5rem; }
+      section { padding: 4rem 1.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">J<span>.</span>Pujar</a>
+  <div class="nav-links" id="navLinks">
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#publications">Writing</a>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-label"><span class="dot"></span> Open to Opportunities</div>
+    <h1>Machine Learning<br>Engineer &amp; <em>Researcher</em></h1>
+    <p class="hero-desc">
+      I'm Jayakumar Pujar — I build production ML systems and research deep learning architectures. 
+      From deploying 100+ models serving 200K daily transactions to advancing multimodal AI at the intersection 
+      of vision and language.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Contact Me
+      </a>
+      <a href="https://github.com/jayakumarpujar" target="_blank" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a href="https://www.linkedin.com/in/jayakumar-p-225294158/" target="_blank" class="btn btn-outline">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        LinkedIn
+      </a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Years Experience</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100+</div>
+        <div class="stat-label">Models Deployed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">200K</div>
+        <div class="stat-label">Daily Transactions</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">98.5%</div>
+        <div class="stat-label">Production Accuracy</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="reveal">
+    <div class="section-label">// Experience</div>
+    <h2 class="section-title">Where I've Worked</h2>
+    <p class="section-subtitle">Building ML systems from research to production, at scale.</p>
+  </div>
+  <div class="exp-timeline">
+    <div class="exp-item reveal">
+      <div class="exp-date">Jan 2025 — Present</div>
+      <div class="exp-content">
+        <h3>Graduate Research Assistant</h3>
+        <div class="exp-company">University of South Dakota, USA</div>
+        <ul class="exp-bullets">
+          <li>Developed transformer-based multimodal architecture integrating Clinical BERT and CLIP (Vision Transformer) for medical image captioning on the MIMIC-CXR dataset (377K Chest X-rays), achieving 18% BLEU improvement.</li>
+          <li>Built end-to-end MLOps pipeline for flood segmentation, processing 3-meter satellite imagery with Mask RCNN; automated data ingestion and Albers reprojection to achieve 96% model accuracy.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Mar 2023 — Dec 2024</div>
+      <div class="exp-content">
+        <h3>Machine Learning Engineer II</h3>
+        <div class="exp-company">Vishwam Corp (Series B AI Startup), CA — Remote</div>
+        <ul class="exp-bullets">
+          <li>Developed and deployed OCR pipeline in Kubeflow + GCP for KYC documents; fine-tuned EAST architecture with 200K labeled images for text detection and Tesseract for recognition.</li>
+          <li>Implemented post-training quantization (FP32 → INT8) enabling 3× faster inference on edge devices.</li>
+          <li>Scaled and monitored 100+ production models for Digital KYC, maintaining 97% accuracy across 200K daily transactions.</li>
+          <li>Built custom TensorFlow preprocessing pipeline with EfficientNetB0 embeddings for MMD drift detection, identifying 4% production data noise.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">Aug 2020 — Mar 2023</div>
+      <div class="exp-content">
+        <h3>Machine Learning Engineer I</h3>
+        <div class="exp-company">Jukshio Tech, Hyderabad, India</div>
+        <ul class="exp-bullets">
+          <li>Led high-volume Root Cause Analysis across production CV/NLP models, analyzing 2M+ data points; boosted accuracy from 96% to 98.5%.</li>
+          <li>Built dataset of 300K images, trained and validated 40+ image classifiers (MobileNetv1, EfficientNetB0) reaching 98% production accuracy.</li>
+          <li>Resolved class imbalance for spoof-detection via augmentation, focal loss, transfer learning and active learning — improving generalization by 10%.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item reveal">
+      <div class="exp-date">May 2020 — Jul 2020</div>
+      <div class="exp-content">
+        <h3>Software Engineer Intern</h3>
+        <div class="exp-company">Uber, New Delhi, India</div>
+        <ul class="exp-bullets">
+          <li>Reduced API latency from 250ms to 30ms by developing RPC endpoints with Redis caching.</li>
+          <li>Improved storage efficiency for Auto-Fill by restructuring table joins, reducing dataset from 125M to 13M rows.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="reveal">
+    <div class="section-label">// Projects</div>
+    <h2 class="section-title">Selected Work</h2>
+    <p class="section-subtitle">Research projects and engineering work spanning LLMs, computer vision, reinforcement learning, and agentic AI.</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card reveal">
+      <span class="project-tag">Agents / MCP</span>
+      <h3>AI Agent with Airbnb's MCP Server</h3>
+      <p>Designed an AI agent using Google's ADK with Gemini 2.0 Flash, integrating an Airbnb MCP server for autonomous multi-parameter tool execution and real-time property retrieval.</p>
+      <div class="project-stack">
+        <span>Gemini 2.0</span><span>Google ADK</span><span>MCP</span><span>Python</span><span>JSON-RPC</span>
+      </div>
+      <a href="https://github.com/jayakumarpujar" target="_blank" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+    <div class="project-card reveal">
+      <span class="project-tag">LLM Distillation</span>
+      <h3>Financial Reasoning Distillation from DeepSeek-R1</h3>
+      <p>Distilled Chain-of-Thought traces from DeepSeek-R1 (671B) into Qwen-7B for financial reasoning, achieving complex reasoning with 99% lower inference costs.</p>
+      <div class="project-stack">
+        <span>PyTorch</span><span>HuggingFace</span><span>Open-R1</span><span>SFT</span><span>CUDA</span>
+      </div>
+      <a href="https://github.com/jayakumarpujar" target="_blank" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+    <div class="project-card reveal">
+      <span class="project-tag">Reinforcement Learning</span>
+      <h3>RL in Stochastic Grid Worlds</h3>
+      <p>Comparative robustness study benchmarking 8 RL algorithms — DQN achieved 72% success vs. 24% for Double DQN in moderate noise, across varying slip probabilities.</p>
+      <div class="project-stack">
+        <span>Python</span><span>OpenAI Gym</span><span>DQN</span><span>Monte Carlo</span><span>SARSA</span>
+      </div>
+      <a href="https://medium.com/@jayakumarpujar/reinforcement-learning-in-a-stochastic-grid-world-1e956867bea9" target="_blank" class="project-link">Read Paper <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+    <div class="project-card reveal">
+      <span class="project-tag">Computer Vision</span>
+      <h3>Multimodal Medical Image Captioning</h3>
+      <p>Transformer architecture integrating Clinical BERT + CLIP for automated chest X-ray report generation on 377K images — 18% BLEU improvement over LSTM-CNN baselines.</p>
+      <div class="project-stack">
+        <span>BERT</span><span>CLIP</span><span>ViT</span><span>MIMIC-CXR</span><span>PyTorch</span>
+      </div>
+      <a href="https://github.com/2ai-lab/Multimodal_Learning" target="_blank" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+    <div class="project-card reveal">
+      <span class="project-tag">Research</span>
+      <h3>Dense Associative Memory with ResNet50</h3>
+      <p>Integration of Dense Associative Memory (DAM) with CNNs for enhanced image classification, exploring memory-augmented neural networks.</p>
+      <div class="project-stack">
+        <span>Python</span><span>PyTorch</span><span>ResNet50</span><span>DAM</span>
+      </div>
+      <a href="https://github.com/jayakumarpujar/DAM-with-Resnet50" target="_blank" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+    <div class="project-card reveal">
+      <span class="project-tag">Computer Vision</span>
+      <h3>Vision Mamba for Image Classification</h3>
+      <p>Exploring Vision Mamba — state-space model architecture applied to image classification tasks as an alternative to Vision Transformers.</p>
+      <div class="project-stack">
+        <span>Python</span><span>Mamba</span><span>SSM</span><span>Vision</span>
+      </div>
+      <a href="https://github.com/jayakumarpujar/vision_mamba" target="_blank" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="reveal">
+    <div class="section-label">// Technical Skills</div>
+    <h2 class="section-title">Tools &amp; Technologies</h2>
+    <p class="section-subtitle">The stack I use to build, train, deploy, and monitor ML systems.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <h3>Languages</h3>
+      <div class="skill-tags">
+        <span>Python</span><span>Golang</span><span>Bash</span><span>SQL</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>ML & AI</h3>
+      <div class="skill-tags">
+        <span>PyTorch</span><span>Deep Learning</span><span>NLP</span><span>Computer Vision</span><span>Reinforcement Learning</span><span>LLMs</span><span>RAG</span><span>Quantization</span><span>CUDA</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Cloud & MLOps</h3>
+      <div class="skill-tags">
+        <span>Kubernetes</span><span>Kubeflow</span><span>GCP</span><span>Vertex AI</span><span>Docker</span><span>CI/CD</span><span>Apache Spark</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <h3>Engineering</h3>
+      <div class="skill-tags">
+        <span>Git</span><span>System Design</span><span>MLOps</span><span>Google ADK</span><span>MCP</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PUBLICATIONS -->
+<section id="publications">
+  <div class="reveal">
+    <div class="section-label">// Writing</div>
+    <h2 class="section-title">Publications &amp; Articles</h2>
+    <p class="section-subtitle">Sharing insights on AI research and engineering on Medium.</p>
+  </div>
+  <div class="pub-list">
+    <div class="pub-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@jayakumarpujar/onestory-coherent-multi-shot-video-generation-with-adaptive-memory-dc141eb17aa0" target="_blank">OneStory: Coherent Multi-Shot Video Generation with Adaptive Memory</a></h3>
+        <div class="pub-meta">Research analysis · Video Generation · Meta AI</div>
+      </div>
+      <div class="pub-date">Dec 2025</div>
+    </div>
+    <div class="pub-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@jayakumarpujar/how-nvidias-nemotron-3-nano-is-rewriting-the-rules-of-ai-efficiency-11e9c7dae80c" target="_blank">How NVIDIA's Nemotron 3 Nano Is Rewriting the Rules of AI Efficiency</a></h3>
+        <div class="pub-meta">AI Efficiency · Model Analysis · NVIDIA</div>
+      </div>
+      <div class="pub-date">Dec 2025</div>
+    </div>
+    <div class="pub-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@jayakumarpujar/reinforcement-learning-in-a-stochastic-grid-world-1e956867bea9" target="_blank">Reinforcement Learning in a Stochastic Grid World</a></h3>
+        <div class="pub-meta">Comparative Study · 8 RL Algorithms · FrozenLake-v1</div>
+      </div>
+      <div class="pub-date">Jun 2025</div>
+    </div>
+    <div class="pub-item reveal">
+      <div>
+        <h3><a href="https://medium.com/@jayakumarpujar/dense-associative-memory-for-image-classification-with-resnet50-d538d699b14d" target="_blank">Dense Associative Memory for Image Classification with ResNet50</a></h3>
+        <div class="pub-meta">Memory-Augmented Networks · CNN · Research</div>
+      </div>
+      <div class="pub-date">Jan 2024</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">// Education</div>
+    <h2 class="section-title">Academic Background</h2>
+  </div>
+  <div class="edu-grid" style="margin-top: 2rem;">
+    <div class="edu-card reveal">
+      <div class="edu-degree">M.S. in Computer Science (AI)</div>
+      <div class="edu-school">University of South Dakota</div>
+      <div class="edu-details">Focus: Deep Learning, Computer Vision, Reinforcement Learning</div>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-degree">B.Tech in Computer Science & Engineering</div>
+      <div class="edu-school">JNTU Hyderabad</div>
+      <div class="edu-details">Graduated September 2020</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <div class="section-label">// Contact</div>
+    <h2 class="section-title">Let's Connect</h2>
+    <p class="section-subtitle">Open to ML/AI engineering roles. Feel free to reach out for opportunities, collaborations, or just to chat about AI.</p>
+  </div>
+  <div class="contact-links reveal">
+    <a href="mailto:jayakumarpujar@gmail.com" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Email
+    </a>
+    <a href="https://www.linkedin.com/in/jayakumar-p-225294158/" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/jayakumarpujar" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      GitHub
+    </a>
+    <a href="https://medium.com/@jayakumarpujar" target="_blank" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M13.54 12a6.8 6.8 0 01-6.77 6.82A6.8 6.8 0 010 12a6.8 6.8 0 016.77-6.82A6.8 6.8 0 0113.54 12zM20.96 12c0 3.54-1.51 6.42-3.38 6.42-1.87 0-3.39-2.88-3.39-6.42s1.52-6.42 3.39-6.42 3.38 2.88 3.38 6.42M24 12c0 3.17-.53 5.75-1.19 5.75-.66 0-1.19-2.58-1.19-5.75s.53-5.75 1.19-5.75C23.47 6.25 24 8.83 24 12z"/></svg>
+      Medium
+    </a>
+    <a href="tel:+16059102930" class="contact-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+      (605) 910-2930
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2025 Jayakumar Pujar · Built with intention · Open to relocation
+</footer>
+
+<script>
+  // Mobile nav toggle
+  document.getElementById('hamburger').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // Close mobile nav on link click
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      document.getElementById('navLinks').classList.remove('open');
+    });
+  });
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('visible');
+        }, i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
