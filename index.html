@@ -393,6 +393,97 @@
     }
     .project-link svg { width: 14px; height: 14px; }
 
+    /* ─── OPEN SOURCE ─── */
+    .oss-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .oss-project {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.3s;
+    }
+    .oss-project:hover { border-color: var(--border-hover); }
+    .oss-project-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+    .oss-project-header h3 {
+      font-size: 1.15rem;
+      font-weight: 600;
+    }
+    .oss-project-header h3 a {
+      color: var(--text-primary);
+    }
+    .oss-project-header h3 a:hover { color: var(--accent); }
+    .oss-badge {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      padding: 0.2rem 0.65rem;
+      border-radius: 100px;
+      background: var(--accent-dim);
+      color: var(--accent);
+      white-space: nowrap;
+    }
+    .oss-pr-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .oss-pr-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      padding: 0.75rem 1rem;
+      background: var(--bg-elevated);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .oss-pr-item:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card);
+    }
+    .oss-pr-icon {
+      flex-shrink: 0;
+      width: 18px;
+      height: 18px;
+      margin-top: 2px;
+      color: var(--accent);
+    }
+    .oss-pr-info { flex: 1; }
+    .oss-pr-info a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.4;
+    }
+    .oss-pr-info a:hover { color: var(--accent); }
+    .oss-pr-desc {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.25rem;
+      line-height: 1.5;
+    }
+    .oss-pr-number {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      margin-top: 3px;
+    }
+
+    @media (max-width: 768px) {
+      .oss-pr-item { flex-direction: column; gap: 0.4rem; }
+      .oss-pr-number { margin-top: 0; }
+    }
+
     /* ─── SKILLS ─── */
     .skills-grid {
       display: grid;
@@ -587,6 +678,7 @@
   <div class="nav-links" id="navLinks">
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
+    <a href="#opensource">Open Source</a>
     <a href="#skills">Skills</a>
     <a href="#publications">Writing</a>
     <a href="#contact" class="nav-cta">Get in Touch</a>
@@ -764,6 +856,95 @@
         <span>Python</span><span>Mamba</span><span>SSM</span><span>Vision</span>
       </div>
       <a href="https://github.com/jayakumarpujar/vision_mamba" target="_blank" class="project-link">View on GitHub <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- OPEN SOURCE -->
+<section id="opensource">
+  <div class="reveal">
+    <div class="section-label">// Open Source</div>
+    <h2 class="section-title">Open Source Contributions</h2>
+    <p class="section-subtitle">Contributing bug fixes, features, and performance improvements to widely-used ML and geospatial libraries.</p>
+  </div>
+  <div class="oss-grid">
+    <!-- HuggingFace Transformers -->
+    <div class="oss-project reveal">
+      <div class="oss-project-header">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        <h3><a href="https://github.com/huggingface/transformers" target="_blank">HuggingFace Transformers</a></h3>
+        <span class="oss-badge">140k+ Stars</span>
+      </div>
+      <ul class="oss-pr-list">
+        <li class="oss-pr-item">
+          <svg class="oss-pr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+          <div class="oss-pr-info">
+            <a href="https://github.com/huggingface/transformers/pull/44366" target="_blank">Fix resume_from_checkpoint key mismatch for models with conversion mapping</a>
+            <div class="oss-pr-desc">Resolved model conversion mapping issues during checkpoint resumption in training pipelines.</div>
+          </div>
+          <span class="oss-pr-number">#44366</span>
+        </li>
+        <li class="oss-pr-item">
+          <svg class="oss-pr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+          <div class="oss-pr-info">
+            <a href="https://github.com/huggingface/transformers/pull/44364" target="_blank">Add missing ReLU in GlmMoeDsaIndexer scoring</a>
+            <div class="oss-pr-desc">Corrected the scoring function in the GLM Mixture-of-Experts architecture by adding the missing ReLU activation.</div>
+          </div>
+          <span class="oss-pr-number">#44364</span>
+        </li>
+        <li class="oss-pr-item">
+          <svg class="oss-pr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+          <div class="oss-pr-info">
+            <a href="https://github.com/huggingface/transformers/pull/44363" target="_blank">Fix off-by-one in decode_spans causing ValueError</a>
+            <div class="oss-pr-desc">Resolved a ValueError in span decoding caused by an off-by-one error in np.argpartition.</div>
+          </div>
+          <span class="oss-pr-number">#44363</span>
+        </li>
+      </ul>
+    </div>
+    <!-- OpenGeos GeoAI -->
+    <div class="oss-project reveal">
+      <div class="oss-project-header">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        <h3><a href="https://github.com/opengeos/geoai" target="_blank">OpenGeos GeoAI</a></h3>
+        <span class="oss-badge">Geospatial AI</span>
+      </div>
+      <ul class="oss-pr-list">
+        <li class="oss-pr-item">
+          <svg class="oss-pr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+          <div class="oss-pr-info">
+            <a href="https://github.com/opengeos/geoai/pull/585" target="_blank">Add CLIP-based zero-shot classification for vector features</a>
+            <div class="oss-pr-desc">Enabled zero-shot classification of vector features using CLIP, eliminating the need for training data.</div>
+          </div>
+          <span class="oss-pr-number">#585</span>
+        </li>
+        <li class="oss-pr-item">
+          <svg class="oss-pr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+          <div class="oss-pr-info">
+            <a href="https://github.com/opengeos/geoai/pull/584" target="_blank">Add radiometric normalization (LIRRN) to landcover_utils</a>
+            <div class="oss-pr-desc">Enhanced the landcover utilities module with radiometric normalization capabilities for satellite imagery.</div>
+          </div>
+          <span class="oss-pr-number">#584</span>
+        </li>
+        <li class="oss-pr-item">
+          <svg class="oss-pr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+          <div class="oss-pr-info">
+            <a href="https://github.com/opengeos/geoai/pull/581" target="_blank">Fix multi-class segmentation mask handling</a>
+            <div class="oss-pr-desc">Fixed mask processing logic for multi-class classification tasks in the segmentation module.</div>
+          </div>
+          <span class="oss-pr-number">#581</span>
+        </li>
+        <li class="oss-pr-item">
+          <svg class="oss-pr-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="18" r="3"/><circle cx="6" cy="6" r="3"/><path d="M13 6h3a2 2 0 012 2v7"/><line x1="6" y1="9" x2="6" y2="21"/></svg>
+          <div class="oss-pr-info">
+            <a href="https://github.com/opengeos/geoai/pull/580" target="_blank">Replace eager imports with PEP 562 lazy loading</a>
+            <div class="oss-pr-desc">Improved package load performance by replacing eager imports with PEP 562 lazy loading in __init__.py.</div>
+          </div>
+          <span class="oss-pr-number">#580</span>
+        </li>
+      </ul>
     </div>
   </div>
 </section>
